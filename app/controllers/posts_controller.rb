@@ -61,6 +61,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def search(query)
+    @posts = Post.search_published(query)
+  end
+
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -70,5 +75,9 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.fetch(:post, {})
+    end
+
+    def query
+      params[:search_posts].presence && params[:search_posts][:query]
     end
 end
