@@ -61,11 +61,10 @@ class PostsController < ApplicationController
     end
   end
 
-  def search(query)
-    @posts = Post.search_published(query)
+  def search
+    @posts = Post.search_published(query) if query
   end
 
-  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
